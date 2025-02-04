@@ -1,0 +1,48 @@
+﻿@model List<ResultRoomDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/_AdminLayout.cshtml";
+}
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-bordered">
+        <tr>
+            <td>#</td>
+            <td>Oda Numarası</td>
+            <td>Resim</td>
+            <td>Fiyat</td>
+            <td>Başlık</td>
+            <td>Yatak Sayısı</td>
+            <td>Banyo Sayısı</td>
+            <td>Wifi</td>
+            <td>Açıklama</td>
+            <td>Sil</td>
+            <td>Güncelle</td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.RoomId</td>
+                <td>@item.RoomNumber</td>
+                <td>@item.RoomCoverImage</td>
+                <td>@item.Price</td>
+                <td>@item.Title</td>
+                <td>@item.BedCount</td>
+                <td>@item.BathCount</td>
+                <td>@item.Wifi</td>
+                <td>@item.Description</td>
+                <td><a href="/Room/DeleteRoom/@item.RoomId" class="btn btn-danger">Sil</a></td>
+                <td><a href="/Room/UpdateRoom/@item.RoomId" class="btn btn-primary">Güncelle</a></td>
+                <td><a href="#" class="btn btn-dark">Detaylar</a></td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p>Henüz eklenmiş bir hizmet bulunmamaktadır.</p>
+}
+
+<a href="/Room/AddRoom" class="btn btn-success">Yeni Oda Ekle</a>
